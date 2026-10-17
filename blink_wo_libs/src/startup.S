@@ -2,7 +2,7 @@
   .global _start
   .align 1
 _start:
-  j handle_reset
+  tail handle_reset
 
   .section .vector,"ax",@progbits
   .align 1

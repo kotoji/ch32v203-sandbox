@@ -6,14 +6,13 @@ PROVIDE( _stack_size = __stack_size );
 
 MEMORY
 {
-  FLASH (rx)  : ORIGIN = 0x00000000, LENGTH = 224K
-  RAM   (rwx) : ORIGIN = 0x20000000, LENGTH = 20K
+  FLASH_ALIAS (rx)  : ORIGIN = 0x00000000, LENGTH = 224K
+  FLASH (rx)        : ORIGIN = 0x08000000, LENGTH = 224K
+  RAM   (rwx)       : ORIGIN = 0x20000000, LENGTH = 20K
 }
 
 SECTIONS
 {
-  PROVIDE( _bootloader_limit = ORIGIN(FLASH) + LENGTH(FLASH) );
-
   .init :
   {
     _sinit = .;
@@ -21,13 +20,13 @@ SECTIONS
     KEEP(*(SORT_NONE(.init)))
     . = ALIGN(4);
     _einit = .;
-  } >FLASH AT>FLASH
+  } >FLASH_ALIAS AT>FLASH
 
   .vector :
   {
     *(.vector);
     . = ALIGN(64);
-  } >FLASH AT>FLASH
+  } >FLASH_ALIAS AT>FLASH
 
   .text :
   {
