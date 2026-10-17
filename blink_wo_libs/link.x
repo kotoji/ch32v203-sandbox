@@ -6,9 +6,8 @@ PROVIDE( _stack_size = __stack_size );
 
 MEMORY
 {
-  FLASH_ALIAS (rx)  : ORIGIN = 0x00000000, LENGTH = 224K
-  FLASH (rx)        : ORIGIN = 0x08000000, LENGTH = 224K
-  RAM   (rwx)       : ORIGIN = 0x20000000, LENGTH = 20K
+  FLASH (rx)    : ORIGIN = 0x08000000, LENGTH = 224K
+  RAM   (rwx)   : ORIGIN = 0x20000000, LENGTH = 20K
 }
 
 SECTIONS
@@ -20,13 +19,13 @@ SECTIONS
     KEEP(*(SORT_NONE(.init)))
     . = ALIGN(4);
     _einit = .;
-  } >FLASH_ALIAS AT>FLASH
+  } >FLASH AT>FLASH
 
   .vector :
   {
     *(.vector);
     . = ALIGN(64);
-  } >FLASH_ALIAS AT>FLASH
+  } >FLASH AT>FLASH
 
   .text :
   {
