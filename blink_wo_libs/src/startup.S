@@ -74,6 +74,7 @@ _vector_base:
   .word   DMA1_Channel8_IRQHandler   /* DMA1 Channel8 */
 
   .option rvc;
+
   .section    .text.vector_handler, "ax", @progbits
   .weak   NMI_Handler                /* NMI */
   .weak   HardFault_Handler          /* Hard Fault */
